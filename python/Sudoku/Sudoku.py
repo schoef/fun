@@ -223,9 +223,7 @@ class Sudoku:
         non_trivial_hypothesis = [(self.hypothesis[i][j], i, j) for i in range(9) for j in range( 9 ) if len(self.hypothesis[i][j])>1]
         non_trivial_hypothesis.sort( key = lambda k:len( k[0]) )
 
-        multiplicity = reduce(mul, [len(h[0]) for h in non_trivial_hypothesis], 1)
-
-        # print self
+        #multiplicity = reduce(mul, [len(h[0]) for h in non_trivial_hypothesis], 1)
 
         #print "NTH", non_trivial_hypothesis
         for possibilities, i, j in non_trivial_hypothesis:

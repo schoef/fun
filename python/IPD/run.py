@@ -1,3 +1,5 @@
+#! /usr/bin/env python
+
 #Standard
 import random
 
@@ -34,13 +36,14 @@ TFT_start_defect_randProp = probability_random(TFT_start_defect, prob, char = 't
 
 #arena = Circle( n = 100 )
 #arena.initialize_random( strategies = [TFT_start_cooperate,  TFT_start_cooperate_coopProp, TFT_start_cooperate_defectProp] )
-arena = AllPairings( n = 10 )
-arena.initialize_random( strategies = [TFT_start_cooperate,  TFT_start_cooperate_coopProp, TFT_start_cooperate_defectProp] )
+#arena = AllPairings( n = 10 )
+#arena.initialize_random( strategies = [TFT_start_cooperate,  TFT_start_cooperate_coopProp, TFT_start_cooperate_defectProp] )
 
-#arena = Torus( nx = 5, ny = 5)
+arena = Torus( nx = 5, ny = 5)
 #arena = Torus( nx = 15, ny = 15)
-#strategies = [TFT_start_defect_randProp, TFT_start_cooperate_randProp, Defector, Cooperator]
-#arena.initialize_random( strategies = strategies )
+strategies = [TFT_start_defect_randProp, TFT_start_cooperate_randProp]
+#strategies = [TFT_start_defect, TFT_start_cooperate]
+arena.initialize_random( strategies = strategies )
 
 #population = [ random.choice([ TFT_start_cooperate, Random]) for i in range(10)]
 #strategies = list(set(population))

@@ -10,7 +10,8 @@ from arena.Line import Line
 from arena.Circle import Circle
 
 #Strategies
-from strategy.TFT import TFT_start_cooperate, TFT_start_defect
+#Strategies
+from strategy.TFT import TFT, TFT_SD, TFTT, TFTT_SD
 from strategy.Random import Random
 from strategy.Defector import Defector
 from strategy.Cooperator import Cooperator
@@ -18,34 +19,34 @@ from strategy.Agent import probability_random, probability_defect, probability_c
 
 # 'prob' chance to have random behaviour
 prob = 0.05
-TFT_start_cooperate_coopProp   = probability_cooperate(TFT_start_cooperate, prob, char = 'T', name = 'TFT(%iC)'%(100*prob))
-TFT_start_cooperate_defectProp = probability_defect(TFT_start_cooperate, prob, char = 'T',  name = 'TFT(%iD)'%(100*prob))
-TFT_start_cooperate_randProp = probability_random(TFT_start_cooperate, prob, char = 'T', name = 'TFT(%iR)'%(100*prob) )
+TFT_coopProp   = probability_cooperate(TFT, prob, char = 'T', name = 'TFT(%iC)'%(100*prob))
+TFT_defectProp = probability_defect(TFT, prob, char = 'T',  name = 'TFT(%iD)'%(100*prob))
+TFT_randProp = probability_random(TFT, prob, char = 'T', name = 'TFT(%iR)'%(100*prob) )
 
-TFT_start_defect_coopProp   = probability_cooperate(TFT_start_defect, prob, char = 't', name = 'TFT-D(%iC)'%(100*prob))
-TFT_start_defect_defectProp = probability_defect(TFT_start_defect, prob, char = 't', name = 'TFT-D(%iD)'%(100*prob))
-TFT_start_defect_randProp = probability_random(TFT_start_defect, prob, char = 't', name = 'TFT-D(%iR)'%(100*prob))
+TFT_SD_coopProp   = probability_cooperate(TFT_SD, prob, char = 't', name = 'TFT-D(%iC)'%(100*prob))
+TFT_SD_defectProp = probability_defect(TFT_SD, prob, char = 't', name = 'TFT-D(%iD)'%(100*prob))
+TFT_SD_randProp = probability_random(TFT_SD, prob, char = 't', name = 'TFT-D(%iR)'%(100*prob))
 
 #arena = Line.fromList([Defector, Cooperator])
 #arena = Line.fromList([Defector, Defector])
 #arena = Line.fromList([Cooperator, Defector])
 #arena = Line.fromList([Cooperator, Cooperator])
-#arena = Line.fromList([TFT_start_cooperate, TFT_start_defect])
-#arena = Line.fromList([TFT_start_defect, TFT_start_cooperate, TFT_start_defect])
-#arena = Circle.fromList([Cooperator, TFT_start_defect, TFT_start_cooperate, TFT_start_defect, TFT_start_cooperate, Cooperator])
+#arena = Line.fromList([TFT, TFT_SD])
+#arena = Line.fromList([TFT_SD, TFT, TFT_SD])
+#arena = Circle.fromList([Cooperator, TFT_SD, TFT, TFT_SD, TFT, Cooperator])
 
 #arena = Circle( n = 100 )
-#arena.initialize_random( strategies = [TFT_start_cooperate,  TFT_start_cooperate_coopProp, TFT_start_cooperate_defectProp] )
+#arena.initialize_random( strategies = [TFT,  TFT_coopProp, TFT_defectProp] )
 #arena = AllPairings( n = 10 )
-#arena.initialize_random( strategies = [TFT_start_cooperate,  TFT_start_cooperate_coopProp, TFT_start_cooperate_defectProp] )
+#arena.initialize_random( strategies = [TFT,  TFT_coopProp, TFT_defectProp] )
 
 arena = Torus( nx = 5, ny = 5)
 #arena = Torus( nx = 15, ny = 15)
-strategies = [TFT_start_defect_randProp, TFT_start_cooperate_randProp]
-#strategies = [TFT_start_defect, TFT_start_cooperate]
+strategies = [TFT_SD_randProp, TFT_randProp]
+#strategies = [TFT_SD, TFT]
 arena.initialize_random( strategies = strategies )
 
-#population = [ random.choice([ TFT_start_cooperate, Random]) for i in range(10)]
+#population = [ random.choice([ TFT, Random]) for i in range(10)]
 #strategies = list(set(population))
 #arena = Line.fromList( population )
 

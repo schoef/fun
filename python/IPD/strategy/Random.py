@@ -4,10 +4,9 @@ import random
 
 class Random( Agent ):
 
+    def __call__( self, history, state = {} ):
 
-    def __call__( self, history ):
-
-        probabilistic = super(Random, self).probabilistic_bahaviour()
+        probabilistic = super(Random, self).probabilistic_bahaviour( state )
         if probabilistic is not None:
             return probabilistic
 

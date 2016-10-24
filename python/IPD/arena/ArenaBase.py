@@ -18,6 +18,7 @@ class ArenaBase:
         # Initialize empty history 
         self.pairs   = list( set ( [ tuple(sorted( (p, q) )) for p in self.positions for q in self.neighbours( p ) ] ))
         self.history = { pair:[[],[]] for pair in self.pairs }
+        self.state   = { pair:{p:{} for p in pair} for pair in self.pairs }
         self.max_history_length = 5        
         return 
 
@@ -56,8 +57,8 @@ class ArenaBase:
             a1, a2 = pair
 
             # Play!
-            decision_agent1 = self.agents[a1]( self.history[pair] )
-            decision_agent2 = self.agents[a2]( list(reversed(self.history[pair])) )
+            decision_agent1 = self.agents[a1]( history = self.history[pair],                    state = self.state[pair][a1] )
+            decision_agent2 = self.agents[a2]( history = list(reversed(self.history[pair])),    state = self.state[pair][a2] )
 
             revenue_agent1, revenue_agent2 = PrisonerDilemma.revenue( decision_agent1, decision_agent2 )
 
@@ -75,7 +76,6 @@ class ArenaBase:
                 self.history[pair][0] = self.history[pair][0][-self.max_history_length:] 
                 self.history[pair][1] = self.history[pair][1][-self.max_history_length:] 
                 
-
     def evaluate_performance( self ):
         ''' Calculate perforamce figures based on agent revenues (Normalized by number of neighbours)
         '''
@@ -122,7 +122,7 @@ class ArenaBase:
                     winner = winners[0]
                 replacements.append( (p, winner) )
 
-        # Replace looser with winner instance and delete history with neighbours
+        # Replace looser with winner instance, delete history with neighbours and reset states
         for pos, winner in replacements:
             if type(self.agents[pos]) == winner:
                 continue
@@ -131,7 +131,9 @@ class ArenaBase:
 
             self.agents[pos] = winner()
             for q in self.neighbours( p ):
-                self.history[ tuple(sorted(( p, q ))) ] = [[], []] 
+                pair = tuple(sorted(( p, q )))
+                self.history[ pair ] = [[], []] 
+                self.state[pair] = {p:{} for p in pair}
 
     def print_population_performance( self ):
         for s in self.population_count.keys():

@@ -10,22 +10,30 @@ class Agent:
     def __init__( self ):
         self.probability_of_random_response = 0
 
-    def probabilistic_bahaviour( self ):
+    def probabilistic_bahaviour( self, state ):
         ''' If one of the properties is defined, act accordingly
         '''
         # give a random answer in 'probability_random' of the cases
         if hasattr(self, "probability_random"):
             if random.uniform(0,1)<self.probability_random:
+                return_value = bool(random.getrandbits(1))
+                state["probabilistic_random"] = return_value
                 return bool(random.getrandbits(1)) 
         if hasattr(self, "probability_defect"):
             if random.uniform(0,1)<self.probability_defect:
+                state["probabilistic_defect"] = True
                 return False
         if hasattr(self, "probability_cooperate"):
             if random.uniform(0,1)<self.probability_cooperate:
+                state["probabilistic_cooperate"] = True
                 return True
+        # reset probabilistic behavour flags in state
+        state["probabilistic_random"]       = None
+        state["probabilistic_cooperate"]    = None
+        state["probabilistic_defect"]       = None
     
     @abc.abstractmethod
-    def __call__( self, history ):
+    def __call__( self, history, state = {} ):
         ''' Implement the strategy based on the history
         '''
         return 

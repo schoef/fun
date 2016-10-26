@@ -136,7 +136,7 @@ class ArenaBase:
                 self.state[pair] = {p:{} for p in pair}
 
     def print_population_performance( self ):
-        for s in self.population_count.keys():
+        for s in sorted( self.population_count.keys(), key = lambda s: s.char):
             print  "%2s %20s count %i cum %6.2f perf %3.2f" % (s.char, s.name, self.population_count[s], self.population_performance_cumulative[s], self.population_performance[s])
 
     def iterate( self ):

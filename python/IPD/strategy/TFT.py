@@ -35,17 +35,17 @@ class TFT( TFTBase ):
     def __str__( self ):
         return self.char
         
-class TFT_SD( TFTBase ):
+class SuspiciousTFT( TFTBase ):
     ''' TFT strategy, but starting with defection 
     '''
 
     def __init__( self ):
-        super(TFT_SD, self).__init__( behaviour_at_start = False)
+        super(SuspiciousTFT, self).__init__( behaviour_at_start = False)
 
     char = 't'
-    name = 'TFT-D'
+    name = 'SuspiciousTFT'
     def __str__( self ):
-        return sel.char
+        return self.char
 
 class TFT_remorse( TFTBase ):
     ''' TFT strategy, remorseful: If probabilistic defection was answered by defection, cooperate
@@ -58,14 +58,14 @@ class TFT_remorse( TFTBase ):
 
         # If I probed, was it retaliated? Then show remorse and cooperate.
         if self.probe:
-            if len(history)>0 and history[1][-1] == False:
+            if len(history[0])>0 and history[1][-1] == False:
                 self.probe = False
                 state['probabilistic_defect'] = None
                 return True
 
         #Did I probe last move? I.e. probabilistic defection when the opponent cooperated
         self.probe = False # Reset 
-        if state.has_key('probabilistic_defect') and state['probabilistic_defect'] == True and len(history)>0 and history[1][-1] == True:
+        if state.has_key('probabilistic_defect') and state['probabilistic_defect'] == True and len(history[0])>0 and history[1][-1] == True:
             self.probe = True
 
         probabilistic = super(TFTBase, self).probabilistic_bahaviour( state )
@@ -118,15 +118,15 @@ class TFTT( TFTTBase ):
     def __str__( self ):
         return self.char
         
-class TFTT_SD( TFTTBase ):
+class SuspiciousTFTT( TFTTBase ):
     ''' TFTT strategy that starts with defection 
     '''
 
     def __init__( self ):
-        super(TFTT_SD, self).__init__( behaviour_at_start = False)
+        super(SuspiciousTFTT, self).__init__( behaviour_at_start = False)
 
     char = 't'
-    name = 'TFTT-D'
+    name = 'SuspiciousTFTT'
     def __str__( self ):
         return self.char
 
@@ -160,7 +160,7 @@ class TFTTHybrid( TFTTHybridBase ):
     def __init__( self ):
         super(TFTTHybrid, self).__init__( behaviour_at_start = True)
 
-    char = 'T'
-    name = 'TFTaTT'
+    char = 'H'
+    name = 'TFTTHybrid'
     def __str__( self ):
         return self.char

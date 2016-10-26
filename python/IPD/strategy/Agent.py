@@ -7,9 +7,6 @@ import random
 class Agent:
     __metaclass__ = abc.ABCMeta
 
-    def __init__( self ):
-        self.probability_of_random_response = 0
-
     def probabilistic_bahaviour( self, state ):
         ''' If one of the properties is defined, act accordingly
         '''

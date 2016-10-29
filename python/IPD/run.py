@@ -1,6 +1,6 @@
 #! /usr/bin/env python
 
-#Standard
+# Standard
 import random
 
 from arena.AllPairings import AllPairings
@@ -9,21 +9,25 @@ from arena.Rectangle import Rectangle
 from arena.Line import Line
 from arena.Circle import Circle
 
-#Strategies
+# Strategies
 from strategy.all import * 
+
+# Monitoring
+from monitoring.PopulationFractions import PopulationFractions
 
 # argParser
 import argparse
 argParser = argparse.ArgumentParser(description = "Argument parser")
 argParser.add_argument('--strategies',  action='store', nargs='*',  choices=[s.name for s in strategies], default=['TFT', 'SuspiciousTFT', 'Adaptive', 'Grudger', 'Random'], help="Strategies." )
 argParser.add_argument('--size', default=5, action='store', type=int, help = 'size of Arena')
-argParser.add_argument('--nmax', default=-1, action='store', type=int, help = 'Maxumim number of iterations')
+argParser.add_argument('--nmax', default=100, action='store', type=int, help = 'Maximum number of iterations')
 
 #argParser.add_argument('--prob', default=0.05, action='store', type=float )
 
 args = argParser.parse_args()
 
 arena = Torus( nx = args.size, ny = args.size)
+arena.add_monitoring_element( PopulationFractions() )
 
 strategies_in_arena = []
 for i_s, s in enumerate(args.strategies):

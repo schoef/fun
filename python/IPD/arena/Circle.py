@@ -1,6 +1,8 @@
-from ArenaBase import ArenaBase
 ''' Implements circular arena.  
 '''
+
+from ArenaBase import ArenaBase
+from helpers.memoize import memoize
 
 class Circle( ArenaBase ):
 
@@ -28,6 +30,7 @@ class Circle( ArenaBase ):
         '''
         return self.positions_ 
 
+    @memoize
     def neighbours( self, position ):
         ''' return all neighbours of a given position on the line.
         '''

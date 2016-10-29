@@ -1,6 +1,8 @@
-from ArenaBase import ArenaBase
 ''' Implements line-shaped arena. Agents sit next to each other 
 '''
+
+from ArenaBase import ArenaBase
+from helpers.memoize import memoize
 
 class AllPairings( ArenaBase ):
 
@@ -28,6 +30,7 @@ class AllPairings( ArenaBase ):
         '''
         return self.positions_ 
 
+    @memoize
     def neighbours( self, position ):
         ''' return all neighbours of a given position on the line.
         '''

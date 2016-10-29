@@ -42,6 +42,7 @@ class Agent:
         return 
 
 # The following functions create new classes that have modified behaviour
+
 def probability_random(cls,  val, char = None, name = None):
     ''' Give a random behaviour in 'val' fraction of cases
     '''
@@ -49,6 +50,7 @@ def probability_random(cls,  val, char = None, name = None):
     if char is not None: args['char'] = char
     if name is not None: args['name'] = name
     return type(cls.__name__+'_probrand_%i'%(100*val), (cls,), args)
+
 def probability_defect(cls,  val, char = None, name = None):
     ''' Defect in 'val' fraction of cases
     '''
@@ -56,6 +58,7 @@ def probability_defect(cls,  val, char = None, name = None):
     if char is not None: args['char'] = char
     if name is not None: args['name'] = name
     return type(cls.__name__+'_probdef_%i'%(100*val), (cls,), args)
+
 def probability_cooperate(cls,  val, char = None, name = None):
     ''' Cooperate in 'val' fraction of cases
     '''

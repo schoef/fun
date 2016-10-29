@@ -1,7 +1,9 @@
-import abc
-from ArenaBase import ArenaBase
 ''' Implements toric arena, i.e. rectangle with periodic boundary conditions 
 '''
+
+import abc
+from ArenaBase import ArenaBase
+from helpers.memoize import memoize
 
 class Torus( ArenaBase ):
 
@@ -22,6 +24,7 @@ class Torus( ArenaBase ):
         '''
         return self.positions_ 
 
+    @memoize
     def neighbours( self, position ):
         ''' return all neighbours of a given position
         '''

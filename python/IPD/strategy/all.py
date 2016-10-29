@@ -1,4 +1,4 @@
-''' Implementation of Iterated Prisoners Dilemma Strategies
+''' Implementation of Iterated Prisoners Dilemma strategies
 '''
 #http://www.iterated-prisoners-dilemma.net/prisoners-dilemma-strategies.shtml
 

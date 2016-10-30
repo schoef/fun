@@ -1,7 +1,7 @@
 import abc
 from Agent import Agent
 
-from helpers.PrisonerDilemma import PrisonerDilemma
+from helpers.PrisonersDilemma import PrisonersDilemma
 
 ''' Implements Adaptive: Starts with c,c,c,c,c,c,d,d,d,d,d and then takes choices which have given the best average score re-calculated after every move.  
 '''
@@ -25,7 +25,7 @@ class Adaptive( Agent ):
 
             opponent = history[1][-2]
             reaction = history[0][-1]
-            revenue  = PrisonerDilemma.revenue( history[0][-1], history[1][-1] )[0]
+            revenue  = PrisonersDilemma.revenue( history[0][-1], history[1][-1] )[0]
             s_key = (opponent, reaction)
             for key, val in [['count', 1], ['revenue', revenue]]: 
                 if state[key].has_key( s_key ): 

@@ -1,7 +1,7 @@
-''' Implementation of PrisonerDilemma
+''' Implementation of PrisonersDilemma
 '''
 
-class PrisonerDilemma:
+class PrisonersDilemma:
 
     @staticmethod
     def revenue( decision1, decision2):

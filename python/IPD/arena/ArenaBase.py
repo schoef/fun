@@ -2,7 +2,7 @@
 '''
 
 #Helpers
-from helpers.PrisonerDilemma import PrisonerDilemma
+from helpers.PrisonersDilemma import PrisonersDilemma
 from helpers.memoize import memoize
 
 import abc
@@ -76,7 +76,7 @@ class ArenaBase:
             decision_agent1 = self.agents[a1]( history = self.history[pair],                    state = self.state[pair][a1] )
             decision_agent2 = self.agents[a2]( history = list(reversed(self.history[pair])),    state = self.state[pair][a2] )
 
-            revenue_agent1, revenue_agent2 = PrisonerDilemma.revenue( decision_agent1, decision_agent2 )
+            revenue_agent1, revenue_agent2 = PrisonersDilemma.revenue( decision_agent1, decision_agent2 )
 
             self.pair_revenues[pair] = (revenue_agent1, revenue_agent2) 
 

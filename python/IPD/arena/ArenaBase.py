@@ -155,7 +155,8 @@ class ArenaBase:
         ''' Helper that prints some information on the populations in the arena.
         '''
         for s in sorted( self.population_count.keys(), key = lambda s: s.char):
-            print  "%2s %20s count: %4i cumulative: %8.2f avg. performance: %3.2f" % (s.char, s.name, self.population_count[s], self.population_performance_cumulative[s], self.population_performance[s])
+            print  "%2s %20s count: %4i cumulative: %8.2f avg. performance: %3.2f" % \
+                (s.char, s.name, self.population_count[s], self.population_performance_cumulative[s], self.population_performance[s])
 
     def add_monitoring_element(self, element):
         element.initialize_arena( self )

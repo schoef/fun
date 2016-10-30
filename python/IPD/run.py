@@ -18,8 +18,8 @@ from monitoring.PopulationFractions import PopulationFractions
 # argParser
 import argparse
 argParser = argparse.ArgumentParser(description = "Argument parser")
-argParser.add_argument('--strategies',  action='store', nargs='*',  choices=[s.name for s in strategies], default=['TFT', 'SuspiciousTFT', 'Adaptive', 'Grudger', 'Random'], help="Strategies." )
-argParser.add_argument('--size', default=5, action='store', type=int, help = 'size of Arena')
+argParser.add_argument('--strategies',  action='store', nargs='*',  choices=[s.name for s in strategies], default=['TFT', 'TFTT', 'Random'], help="Strategies." )
+argParser.add_argument('--size', default=50, action='store', type=int, help = 'size of Arena')
 argParser.add_argument('--nmax', default=100, action='store', type=int, help = 'Maximum number of iterations')
 
 #argParser.add_argument('--prob', default=0.05, action='store', type=float )

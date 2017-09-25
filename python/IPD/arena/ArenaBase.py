@@ -126,7 +126,7 @@ class ArenaBase:
         for p in self.positions:
             neighbour_performances = {q:self.agent_average_performance[q] for q in self.neighbours( p )}
             # find local performance minima
-            if all( self.agent_average_performance[p] < performance for performance in neighbour_performances.values()):
+            if all( self.agent_average_performance[p] <= performance for performance in neighbour_performances.values()):
                 # find best performing neighbour strategies
                 maximum_performance = max(neighbour_performances.values())
                 winners = [type(self.agents[q]) for q in neighbour_performances.keys() if self.agent_average_performance[q]==maximum_performance] 
